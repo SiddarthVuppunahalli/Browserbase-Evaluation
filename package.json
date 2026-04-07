@@ -1,0 +1,21 @@
+{
+  "name": "browserbase-evals",
+  "version": "1.0.0",
+  "description": "CLI-first MVP for evaluating browser-agent tasks using Browserbase + Stagehand",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "run:suite": "tsx src/runner/runSuite.ts",
+    "report": "tsx src/reporting/generateFindingsMd.ts"
+  },
+  "dependencies": {
+    "@browserbasehq/stagehand": "^1.0.0",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.0.0"
+  }
+}
