@@ -7,6 +7,8 @@
     "build": "tsc",
     "typecheck": "tsc --noEmit",
     "run:suite": "tsx src/runner/runSuite.ts",
+    "run:task": "tsx src/runner/runSingleTask.ts",
+    "smoke": "tsx src/runner/runSingleTask.ts --smoke",
     "report": "tsx src/reporting/generateFindingsMd.ts"
   },
   "dependencies": {

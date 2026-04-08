@@ -76,8 +76,12 @@ export const scoreRun = async (task: EvalTask, rawResult: Partial<EvalRunResult>
         notes: rawResult.notes
     };
 
-    // Auto-save the score object to results/scored/
-    const outputPath = path.join(process.cwd(), "results", "scored", `${scoredResult.taskId}_scored.json`);
+    // Save to results/scored/
+    const outputDir = path.join(process.cwd(), "results", "scored");
+    const outputPath = path.join(outputDir, `${scoredResult.taskId}_scored.json`);
+    
+    // Low-risk fallback: guarantee directory is alive
+    await fs.mkdir(outputDir, { recursive: true });
     await fs.writeFile(outputPath, JSON.stringify(scoredResult, null, 2), "utf-8");
 
     return scoredResult;

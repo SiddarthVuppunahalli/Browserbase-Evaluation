@@ -104,8 +104,11 @@ export const runTask = async (task: EvalTask): Promise<Partial<EvalRunResult>> =
 
     // Auto-save to the 'raw' folder
     const fileName = `${task.id}_${Date.now()}.json`;
-    const outputPath = path.join(process.cwd(), "results", "raw", fileName);
+    const outputDir = path.join(process.cwd(), "results", "raw");
+    const outputPath = path.join(outputDir, fileName);
     
+    // Low-risk safety: ensure directory exists before writing!
+    await fs.mkdir(outputDir, { recursive: true });
     await fs.writeFile(outputPath, JSON.stringify(rawResult, null, 2), "utf-8");
     console.log(`✔ Finished. Raw results saved to ${outputPath}`);
     
